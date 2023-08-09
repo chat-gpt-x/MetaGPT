@@ -43,6 +43,7 @@ class Config(metaclass=Singleton):
         self._init_with_config_files_and_env(self._configs, yaml_file)
         logger.info("Config loading done.")
         self.global_proxy = self._get("GLOBAL_PROXY")
+        self.openai_proxy = self._get("OPENAI_PROXY")
         self.openai_api_key = self._get("OPENAI_API_KEY")
         if not self.openai_api_key or "YOUR_API_KEY" == self.openai_api_key:
             raise NotConfiguredException("Set OPENAI_API_KEY first")
