@@ -140,6 +140,16 @@ class OpenAIGPTAPI(BaseGPTAPI, RateLimiter):
 
     def __init_openai(self, config):
         openai.api_key = config.openai_api_key
+        if config.global_proxy:
+            openai.proxy = {
+                "https": config.global_proxy,
+                "http": config.global_proxy
+            }
+        if config.openai_proxy:
+            openai.proxy = {
+                "https": config.openai_proxy,
+                "http": config.openai_proxy
+            }
         if config.openai_api_base:
             openai.api_base = config.openai_api_base
         if config.openai_api_type:
